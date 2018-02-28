@@ -166,3 +166,7 @@ a.article, a.article:hover {
         display: none;
     }
 }
+
+.navbar{
+    padding: 0px;
+}

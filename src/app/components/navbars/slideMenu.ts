@@ -5,6 +5,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ClickOutsideDirective } from './clickOutside';
 
+import { RouterModule, Routes } from '@angular/router';
+
+import { NewCmpComponentComponent } from '../new-cmp-component/new-cmp-component.component';
+
 @Component({
     selector: 'side-navigation',
     templateUrl: 'slidemenu.template.html',
@@ -55,7 +59,7 @@ export class SlideMenu implements AfterViewInit {
         },
         closeOnCLick: false
     };
-    constructor(private _elementRef: ElementRef, private sanitizer: DomSanitizer) {
+    constructor(private _elementRef: ElementRef, private sanitizer: DomSanitizer, ) {
 
     }
 
@@ -83,6 +87,8 @@ export class SlideMenu implements AfterViewInit {
     }
     currentItem:any;
     private onItemClick(item: any) {
+        this.menuState = !this.menuState;
+        this.overlayElem.style['opacity'] = 0;
         if(this.currentItem){
             this.currentItem.active = this.currentItem.active ? false : true;
             
@@ -104,6 +110,8 @@ export class SlideMenu implements AfterViewInit {
 
     }
     private toggleSubMenu(item: any) {
+
+        console.log(item.expand);
         if (item.expand) {
             item.expand = item.expand == 'hide' ? 'show' : 'hide';
         }
@@ -135,8 +143,14 @@ export class SlideMenu implements AfterViewInit {
         }
     }
 }
+
+const appRoutes: Routes = [
+    
+ ];
+
+
 @NgModule({
-    imports: [CommonModule, BrowserAnimationsModule],
+    imports: [CommonModule, BrowserAnimationsModule,RouterModule.forRoot(appRoutes),],
     declarations: [SlideMenu, ClickOutsideDirective],
     exports: [SlideMenu, ClickOutsideDirective, BrowserAnimationsModule]
 })

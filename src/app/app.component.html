@@ -6,8 +6,19 @@
 
  -->
 
+ <nav class="navbar navbar-light bg-faded">
+  <side-navigation [menulist]="menuItemsArray" (open)="onMenuOpen()" (close)="onMenuClose()" (onItemSelect)="onItemSelect($event)"></side-navigation>
+  <ul class="nav navbar-nav pull-right">
+    <li class="nav-item active">
+      <a class="nav-link" href="/#/">Home</a> 
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/#/search">Search</a>
+    </li>
+  </ul>
+</nav>
 
- <side-navigation [menulist]="menuItemsArray" (open)="onMenuOpen()" (close)="onMenuClose()" (onItemSelect)="onItemSelect($event)"></side-navigation>
+ 
 
  <router-outlet></router-outlet>
 
